@@ -1,0 +1,14 @@
+openai-whisper
+torch
+torchvision
+torchaudio
+easyocr
+opencv-python-headless
+flask
+pandas
+scikit-learn
+joblib
+Flask
+requests
+python-dotenv
+redis

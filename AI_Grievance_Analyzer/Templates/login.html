@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - Grievance Portal</title>
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        background: #f5f5f5; 
+        text-align: center; 
+        padding-top: 100px; 
+    }
+    .login-box { 
+        background: white; 
+        padding: 30px; 
+        border-radius: 8px; 
+        display: inline-block; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+    }
+    input, select { 
+        padding: 10px; 
+        margin: 10px 0; 
+        width: 250px; 
+    }
+    button { 
+        padding: 10px 20px; 
+        background: #007bff; 
+        color: white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+    button:hover { 
+        background: #0056b3; 
+    }
+</style>
+<script>
+function toggleFields() {
+    const loginType = document.getElementById("login-type").value;
+    const mobileField = document.getElementById("mobile-field");
+    const passwordField = document.getElementById("password-field");
+
+    if (loginType === "user") {
+        mobileField.style.display = "block";
+        passwordField.style.display = "none";
+    } else {
+        mobileField.style.display = "none";
+        passwordField.style.display = "block";
+    }
+}
+</script>
+</head>
+<body>
+<div class="login-box">
+    <h2>Login</h2>
+    <form action="{{ url_for('do_login') }}" method="POST">
+        <select id="login-type" name="login_type" onchange="toggleFields()">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select><br>
+
+        <input type="text" name="name" placeholder="Enter Name" required><br>
+
+        <!-- User fields -->
+        <div id="mobile-field">
+            <input type="text" name="mobile" placeholder="Enter Mobile Number"><br>
+        </div>
+
+        <!-- Admin fields -->
+        <div id="password-field" style="display:none;">
+            <input type="password" name="password" placeholder="Enter Password"><br>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
+</body>
+</html>
